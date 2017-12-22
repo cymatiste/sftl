@@ -210,6 +210,139 @@
             
         };
 
+        _this.bgrTest = function(){
+        };
+
+        function _intToHex(int){
+
+        }
+
+        function _hexToInt(hex){
+            var int = 0;
+            for(var i=1; i<hex.length; i++){
+                var char = hex.charAt(i);
+                for(var c=0; c<_hexChars.length; c++){
+                    if(char == _hexChars[c]){
+                        int += c*Math.pow(16,(5-(i-1)));
+                    }
+                }
+            }
+            return int;
+        }
+
+        _this.hexToBgrInt = function(hex){
+            return _hexToInt(_this.rgbToBgrHex(_this.hexToRgb('#C7B496')));
+        };
+
+        /**
+         * Is the provided string a valid hex value?
+         * @param  {string} colourStr
+         * @return {bool}               true iff colourStr represents a hex value.
+         */
+        _this.isHex = function(colourStr) {
+            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(colourStr);
+        };
+
+        /**
+         * Convert a web colour name to a hex string
+         * @param  {string} colourStr    a CSS colour name
+         * @return {string}
+         */
+        _this.webColourToHex = function(colourStr) {
+            var a = document.createElement("div");
+            a.style.color = colourStr;
+            var colours = window.getComputedStyle( document.body.appendChild(a) ).color.match(/\d+/g).map(function(a) {
+                return parseInt(a, 10);
+            });
+            document.body.removeChild(a);
+            var workingHex = (colours.length >= 3) ? "#" + (((1 << 24) + (colours[0] << 16) + (colours[1] << 8) + colours[2]).toString(16).substr(1)) : false;
+            if (workingHex) {
+                return workingHex;
+            } else {
+                throw (colourStr + " does not represent a known web colour.");
+            }
+        };
+
+        /**
+         * Get the hex value of a string that may be a named web colour, or may already be in hex
+         * @param  {string} colourStr    The string representing a colour
+         * @return {string}             Hex string representing the colour
+         */
+        _this.nameToHex = function(colourStr) {
+            if (_this.isHex(colourStr)) {
+                return colourStr;
+            } else {
+                return _this.webColourToHex(colourStr);
+            }
+        };
+
+        /**
+         * Get a weighted average of two colours
+         * @param  {string} colourStr1       A web colour name or hex colour string
+         * @param  {string} colourStr2       A web colour name or hex colour string
+         * @param  {Number} proportion1     Proportion (0<p<1) of colour1 to use in the mix
+         * @param  {Number} proportion2     Proportion (0<p<1) of colour1 to use in the mix
+         * @return {string}                 Hex string representing the mixed colour
+         */
+        _this.mixHexCols = function(colourStr1, colourStr2, proportion1, proportion2) {
+            var rgb1 = _this.hexToRgb(_this.webColourToHex(colourStr1));
+            var rgb2 = _this.hexToRgb(_this.webColourToHex(colourStr2));
+            var rgbmixed = {
+                r : Math.floor(parseInt(rgb1.r) * proportion1 + parseInt(rgb2.r) * proportion2),
+                g : Math.floor(parseInt(rgb1.g) * proportion1 + parseInt(rgb2.g) * proportion2),
+                b : Math.floor(parseInt(rgb1.b) * proportion1 + parseInt(rgb2.b) * proportion2)
+            };
+            return _this.rgbToHex(rgbmixed);
+        };
+
+        /**
+         * Convert a hex string to an object with r, g, and b values.
+         * // with thanks to http://stackoverflow.com/users/1047797/david
+         * @param  {string} hex     Hex colour string
+         * @return {object}         Object of type {r:redValue, g:greenValue, b:blueValue};
+         */
+        _this.hexToRgb = function(hex) {
+            // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+            var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+
+            var hexBreakdown = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+            var rgbObj = hexBreakdown ? {
+                r : parseInt(hexBreakdown[1], 16),
+                g : parseInt(hexBreakdown[2], 16),
+                b : parseInt(hexBreakdown[3], 16)
+            } : null;
+
+            return rgbObj;
+        };
+
+        /**
+         * Convert an object with r, g, and b values to a hex string
+         * @param  {object} rgbObj  Object with values {r:redValue, g:greenValue, b:blueValue};
+         * @return {string}         Hex colour string
+         */
+        _this.rgbToHex = function(rgbObj) {
+            return "#" + _componentToHex(rgbObj.r) + _componentToHex(rgbObj.g) + _componentToHex(rgbObj.b);
+        };
+
+        _this.rgbToBgrHex = function(rgbObj) {
+            return "#" + _componentToHex(rgbObj.b) + _componentToHex(rgbObj.g) + _componentToHex(rgbObj.r);
+        };
+
+
+        /**
+         * Helper for rgbToHex, converts each individual colour component to a single hex value
+         * @param  {Number} c  A number between 0 and 255
+         * @return {string}    The hex equivalent of the provided component
+         */
+        function _componentToHex (c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+
         return _this;
 
     }; // jshint ignore:line
