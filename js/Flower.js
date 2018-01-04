@@ -18,7 +18,7 @@
         var _canvasWidth = 1920;
         var _canvasHeight = 1080;
 
-        var _numPetals = 24;
+        var _numPetals = 2;
         var _petals = [];
 
         var _flowerContainer;
@@ -40,17 +40,22 @@
 
 
         function _createFlower(flowerData){  
+            
             for(var i=0; i<_numPetals; i++){
                _createOuterPetal(i);
             }
             
+            /*
             for(var j=0; j<_numPetals; j++){
                 _createInnerPetal1(j);
             }
-
+            */
+            
+            /*
             for(var j=0; j<_numPetals; j++){
                 _createInnerPetal2(j);
-            }
+            }*/
+            
            
            /*
             for(var p=0; p<_petals.length; p++){
@@ -71,7 +76,7 @@
             }
             */
            for(var p=0; p<_petals.length; p++){
-            _petals[p].rotation = _petals[p].targetRot;
+                _petals[p].rotation = _petals[p].targetRot;
            }
             
            
@@ -83,11 +88,11 @@
 
             var rotAngle = (360/_numPetals);
 
-            var outerPetal1 = new sftl.Petal(rotAngle, 350, "green", _flowerContainer);
-            var outerPetal2 = new sftl.Petal(rotAngle, 350, "black", _flowerContainer);
-            var outerPetal3 = new sftl.Petal(rotAngle, 350, "dark", _flowerContainer);
-            var outerPetal4 = new sftl.Petal(rotAngle, 350, "dark", _flowerContainer);
-            var outerPetal5 = new sftl.Petal(rotAngle, 350, "dark", _flowerContainer);
+            var outerPetal1 = new sftl.Petal(rotAngle, 350, "red", _flowerContainer);
+            var outerPetal2 = new sftl.Petal(rotAngle, 350, "yellow", _flowerContainer);
+            var outerPetal3 = new sftl.Petal(rotAngle, 350, "free", _flowerContainer);
+            var outerPetal4 = new sftl.Petal(rotAngle, 350, "free", _flowerContainer);
+            var outerPetal5 = new sftl.Petal(rotAngle, 350, "free", _flowerContainer);
             //_flowerContainer.addChild(outerPetal);
             //outerPetal.displayIn(_flowerContainer);
             //var clone = _clone(outerPetal);
@@ -108,7 +113,7 @@
             outerPetal3.scaleY =  0.9;
             outerPetal4.scaleY =  outerPetal5.scaleY = 0.7;
 
-            outerPetal1.alpha = 0.6;
+            outerPetal1.alpha = 0.8;
             outerPetal2.alpha = 0.9;
             outerPetal3.alpha = outerPetal4.alpha = outerPetal5.alpha = 0.3;
 
@@ -117,8 +122,8 @@
         function _createInnerPetal1(j){
 
             var rotAngle = (360/(_numPetals));
-            var innerPetal1 = new sftl.Petal(rotAngle, 300, "blue", _flowerContainer);
-            var innerPetal2 = new sftl.Petal(rotAngle, 300, "black", _flowerContainer);
+            var innerPetal1 = new sftl.Petal(rotAngle, 300, "red", _flowerContainer);
+            var innerPetal2 = new sftl.Petal(rotAngle, 300, "yellow", _flowerContainer);
             //_flowerContainer.addChild(innerPetal);
             //innerPetal.displayIn(_flowerContainer);
             //var clone = JSON.parse(JSON.stringify(innerPetal));
@@ -141,8 +146,8 @@
          function _createInnerPetal2(j){
 
             var rotAngle = (360/(_numPetals));
-            var innerPetal1 = new sftl.Petal(rotAngle, 150, "pink", _flowerContainer);
-            var innerPetal2 = new sftl.Petal(rotAngle, 150, "black", _flowerContainer);
+            var innerPetal1 = new sftl.Petal(rotAngle, 130, "yellow", _flowerContainer);
+            var innerPetal2 = new sftl.Petal(rotAngle, 130, "white", _flowerContainer);
             //_flowerContainer.addChild(innerPetal);
             //innerPetal.displayIn(_flowerContainer);
             //var clone = JSON.parse(JSON.stringify(innerPetal));
@@ -154,7 +159,7 @@
             innerPetal1.y = innerPetal2.y = _canvasHeight/2;
 
             innerPetal1.scaleX = 1;
-            innerPetal2.scaleX = 0.9;
+            innerPetal2.scaleX = 0.7;
             innerPetal2.scaleY = 0.97;
 
             innerPetal1.alpha = 0.6;
@@ -167,7 +172,7 @@
             
             for(var i=0; i<_petals.length; i++){
                 _petals[i].update();
-                _petals[i].rotation += (_petals[i].targetRot - _petals[i].rotation)/40;
+                //_petals[i].rotation += 0.1;
                 //_petals[i].scaleX += 0.001;
             }
             //_petals[0].update();

@@ -13,7 +13,7 @@
         var _hexChars =  ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
 
 
-        _this.variationsOn = function(color){
+        _this.variationsOn = function(color, variability){
 
             var col = color;
 
@@ -35,10 +35,13 @@
                 col = _this.randomDark();
             } else if (color == "darkblue"){
                 col = _this.randomDarkBlue();
+            } else if (color == "brightblue"){
+                col = _this.randomBrightBlue();
             } else if (color == "pink"){
                 col = _this.randomPink();
+            } else {
+                col = _this.brightenByAmt(col,Math.floor(Math.random()*variability - variability));
             }
-
             return col;
             
         }
@@ -74,6 +77,15 @@
             hexString = hexString + _hexChars[Math.floor(Math.random()*2)];
             hexString = hexString + _hexChars[Math.floor(Math.random()*2)];
             hexString = hexString + _hexChars[Math.floor(Math.random()*8)+8];
+            hexString = hexString + _hexChars[Math.floor(Math.random()*8)+8];
+            return hexString;
+        };
+
+        _this.randomBrightBlue = function(){
+            var hexString = "#00";
+            hexString = hexString + _hexChars[Math.floor(Math.random()*8)+8];
+            hexString = hexString + _hexChars[Math.floor(Math.random()*16)];
+            hexString = hexString + "F";
             hexString = hexString + _hexChars[Math.floor(Math.random()*8)+8];
             return hexString;
         };
@@ -126,12 +138,12 @@
 
         _this.randomWhite = function(){
             var hexString = "#";
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
-            hexString = hexString + _hexChars[Math.floor(Math.random()*12)+4];
+            hexString = hexString + "F";
+            hexString = hexString + _hexChars[Math.floor(Math.random()*16)];
+            hexString = hexString + "F";
+            hexString = hexString + _hexChars[Math.floor(Math.random()*16)];
+            hexString = hexString + "F";
+            hexString = hexString + _hexChars[Math.floor(Math.random()*16)];
 
             return hexString;
         };
@@ -174,6 +186,43 @@
             return hexString;
         };
 
+        /**
+         * Take either a hex or rgba color and brighten it by a specified amount.
+         * @param  {string} col         -- hex or rgba color to brighten
+         * @param  {int} brightening    -- number of steps (out of 255) to increase brightness
+         * @return {string}             -- modified color in same format as original
+         */
+        _this.brightenByAmt = function(col,brightening){
+
+            var rgbCol;
+
+            if(_this.isHex(col)){
+                rgbCol = _this.hexToRgb(col);
+            } else if (col.r !== undefined && col.g !== undefined && col.b !== undefined){
+                rgbCol = col;
+            } else {
+                console.warn("what kind of a color is "+col+" ?  Can't brighten.");
+                return;
+            }
+
+             rgbCol.r = Math.max(0,Math.min(255,rgbCol.r + brightening));
+             rgbCol.g = Math.max(0,Math.min(255,rgbCol.g + brightening));
+             rgbCol.b = Math.max(0,Math.min(255,rgbCol.b + brightening));
+
+             if(_this.isHex(col)){
+                return _this.rgbToHex(rgbCol);
+             } else {
+                return rgbCol;
+             }
+        };
+
+        /**
+         * Picks only one of the r, g, or b values indicated in the hex color and shifts it by one
+         * in a random direction
+         * -----------------------------------------------------------------------------------------
+         * @param  {string} hex1 -- a hex color string
+         * @return {string} -- the modified color hex value.
+         */
         _this.subtleHexShift = function(hex1){
             var hex2 = "#";
 
