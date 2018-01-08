@@ -70,6 +70,19 @@
             //_this.addChild(_petalShape);
             _petalParent.addChild(_petalContainer);
 
+
+
+            var testCurve = new Bezier(150,40, 80,30,  105,50);
+            console.trace(testCurve);
+            var LUT = testCurve.getLut(8);
+            LUT.forEach(function(p){console.trace(p);});
+
+
+
+
+
+
+
             return _petalContainer;
 
             
