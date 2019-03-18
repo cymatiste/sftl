@@ -519,43 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "js/Flower.js",
-			"settings":
-			{
-				"buffer_size": 6367,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 1038,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/util/Colors.js",
-			"settings":
-			{
-				"buffer_size": 15920,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 30 files for \".variationsOn\"\n\nC:\\Projects\\Extra\\sftl\\js\\Petal.js:\n   36:             _col = sftl.Colors.variationsOn(color);\n\nC:\\Projects\\Extra\\sftl\\js\\util\\Colors.js:\n   16:         _this.variationsOn = function(color){\n\n2 matches across 2 files\n",
-			"settings":
-			{
-				"buffer_size": 257,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -765,6 +728,9 @@
 	],
 	"file_history":
 	[
+		"/C/Projects/Extra/sftl/js/util/Colors.js",
+		"/C/Projects/Extra/sftl/js/Flower.js",
+		"/C/Projects/Extra/sftl/index.html",
 		"/C/Projects/Extra/sftl/js/Petal.js",
 		"/C/Projects/Extra/sftl/js/pomax/Bezier.js",
 		"/C/Projects/Extra/bezierjs/index.js",
@@ -889,14 +855,11 @@
 		"/C/Projects/CordovaConversion/pidgelycordova/www/index.html",
 		"/C/Projects/AnneDroids/annedroidsdualscreenscroller/builds/release/audio/GameAudio.json",
 		"/C/Projects/AnneDroids/pidgely/index.html",
-		"/C/Projects/AnneDroids/pidgely/index_compiled.html",
-		"/C/Projects/CordovaConversion/junkyardjamcordova_backup/config.xml",
-		"/C/Projects/Giver/giver150/src/config/parks/bc/exterior/layerData.json",
-		"/C/Projects/Giver/giver150/src/js/scenes/PreloadScene.js"
+		"/C/Projects/AnneDroids/pidgely/index_compiled.html"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -940,149 +903,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "js/Flower.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6367,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2850,
-								2850
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 798.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1038,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								404,
-								404
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/util/Colors.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15920,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1401,
-								1401
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 257,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										113,
-										126
-									],
-									[
-										198,
-										211
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								118,
-								118
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
